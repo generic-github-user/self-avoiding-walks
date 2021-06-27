@@ -28,3 +28,24 @@ for n in range(dimensions):
         delta = np.zeros(dimensions).astype(np.int)
         delta[n] = y
         choices.append(delta)
+
+steps = []
+pos = np.array(start)
+lengths = []
+walks = []
+for x in range(1000):
+    grid = np.zeros([z] * D)
+    for t in range(z**2):
+#         print(0<pos+delta[0]<z)
+#         print(grid[tuple(pos+delta[0])])
+        possible = list(filter(lambda c: (0<=pos+c).all() and (pos+c<z).all() and grid[tuple(pos+c)] == 0, choices))
+        if possible:
+            delta = random.choice(possible)
+            steps.append(delta)
+            pos += delta
+            pos = np.clip(pos, 0, z-1)
+            grid[tuple(pos)] = 1
+        else:
+            lengths.append(t)
+            walks.append(grid)
+            break
