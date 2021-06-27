@@ -13,7 +13,7 @@ import itertools
 import random
 
 
-# In[244]:
+# In[264]:
 
 
 dimensions = 2
@@ -49,3 +49,24 @@ for x in range(1000):
             lengths.append(t)
             walks.append(grid)
             break
+
+plt.imshow(grid, cmap='inferno')
+
+
+# In[265]:
+
+
+plt.imshow(np.average(np.stack(walks), axis=0))
+
+
+# In[263]:
+
+
+plt.hist(lengths, bins=25)
+
+
+# In[ ]:
+
+
+
+
