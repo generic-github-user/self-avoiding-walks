@@ -34,9 +34,34 @@ for n in range(dimensions):
         delta = np.zeros(dimensions).astype(np.int)
         delta[n] = y
         choices.append(delta)
+choices = np.stack(choices)
+
+print(choices)
+
+
+# In[650]:
+
 
 steps = []
-pos = np.array(start)
+@nb.njit
+def valid_moves(g, m, q):
+#     filtered = list(filter(lambda c: (0<=pos+c).all() and (pos+c<z).all() and grid[tuple(pos+c)] == 0, m))
+    filtered = []
+    for i in m:
+#         print(pos, m)
+        p = q+i
+#         if (0<=p).all() and (p<z).all() and g[p[0], p[1]] == 0:
+        if (0<=p).all():
+            if (p<z).all():
+                if g[p[0], p[1]] == 0:
+#                     print(p, g[p[0], p[1]], (p<z).all(), z)
+                    filtered.append(i)
+    return filtered
+
+
+# In[667]:
+
+
 @nb.jit(nopython=True)
 def bound(x, a, b):
     if x >= b:
@@ -50,24 +75,63 @@ def clip(x, a, b):
     for i in range(x.shape[0]):
         x[i] = bound(x[i], a, b)
     return x
+
+
+# In[690]:
+
+
+@nb.njit#(parallel=True)
+def simulate():
+    for x in range(1):
+        pos = np.array([4,4])
+#         grid = np.zeros([z] * D)
+        grid = np.zeros((z, z), dtype=np.int64)
+        lengths = []
+        walks = []
+        for t in range(z**2):
+    #         print(0<pos+delta[0]<z)
+    #         print(grid[tuple(pos+delta[0])])
+            possible = valid_moves(grid, choices, pos)
+#             print(possible)
+            grid[pos[0], pos[1]] = t+(z**2//4)
+            
+            if len(possible) > 0:
+#                 delta = random.choice(possible)
+#                 delta = np.random.choice(possible)
+#                 np.random.shuffle(possible)
+                index = np.random.randint(0, len(possible))
+                delta = possible[index]
+
+#                 steps.append(delta)
+                pos += delta
+#                 pos = np.clip(pos, 0, z-1)
+                
+                pos = clip(pos, 0, z)
+                
+#                 grid[tuple(pos)] = 1
+#                 print(pos[0])
+            else:
+                lengths.append(t)
+#                 walks.append(grid)
+                break
+#         else:
+        walks.append(grid)
+    return grid
+
+
+# In[732]:
+
+
 lengths = []
 walks = []
-for x in range(1000):
-    grid = np.zeros([z] * D)
-    for t in range(z**2):
-#         print(0<pos+delta[0]<z)
-#         print(grid[tuple(pos+delta[0])])
-        possible = list(filter(lambda c: (0<=pos+c).all() and (pos+c<z).all() and grid[tuple(pos+c)] == 0, choices))
-        if possible:
-            delta = random.choice(possible)
-            steps.append(delta)
-            pos += delta
-            pos = np.clip(pos, 0, z-1)
-            grid[tuple(pos)] = 1
-        else:
-            lengths.append(t)
-            walks.append(grid)
-            break
+for i in range(2000):
+    G = simulate()
+#     if best:
+#         print(best.max())
+    lengths.append(G.max())
+    walks.append(G)
+    if best is None or G.max() > best.max():
+        best = G
 
 plt.imshow(grid, cmap='inferno')
 
