@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Refer to the [Wikipedia article](https://en.wikipedia.org/wiki/Self-avoiding_walk) on self-avoiding walks for a good primer on the subject.
+# Refer to the [Wikipedia article](https://en.wikipedia.org/wiki/Self-avoiding_walk) on self-avoiding walks for a good primer on the subject. [Bauerschmidt et al. (2012)](https://www.ihes.fr/~duminil/publi/saw_lecture_notes.pdf) give an extremely thorough description of known qualities of self-avoiding random walks and their connections to other areas of mathematics. Here are links to some other resources I found informative:
+#  - https://mathoverflow.net/questions/158811/wander-distance-of-self-avoiding-walk-that-backs-out-of-culs-de-sac
+#  - https://mathoverflow.net/questions/52813/self-avoiding-walk-enumerations
+#  - https://mathoverflow.net/questions/41543/how-to-characterize-a-self-avoiding-
+#  - https://mathoverflow.net/questions/54144/self-avoiding-walk-pair-correlation
+#  - https://mathoverflow.net/questions/23583/self-avoidance-time-of-random-walk
+#  - https://mathoverflow.net/questions/181340/square-filling-self-avoiding-walk
 
 # In[32]:
 
