@@ -19,7 +19,7 @@ import itertools
 import random
 
 
-# In[264]:
+# In[666]:
 
 
 dimensions = 2
@@ -122,6 +122,7 @@ def simulate():
 # In[732]:
 
 
+best = None
 lengths = []
 walks = []
 for i in range(2000):
@@ -144,16 +145,16 @@ plt.axis('off')
 # add backtracking
 
 
-# In[265]:
+# In[685]:
+
+
+plt.hist(lengths, bins=30)
+
+
+# In[619]:
 
 
 plt.imshow(np.average(np.stack(walks), axis=0))
-
-
-# In[263]:
-
-
-plt.hist(lengths, bins=25)
 
 
 # In[ ]:
