@@ -133,7 +133,15 @@ for i in range(2000):
     if best is None or G.max() > best.max():
         best = G
 
-plt.imshow(grid, cmap='inferno')
+plt.figure(figsize=(10, 10))
+plt.imshow(best, cmap='inferno')
+plt.axis('off')
+# decision trees? + parity
+# random walks that close to a polygon
+# (self-avoiding) random walks around obstructions
+# add heuristics
+# avoid and/or break at 
+# add backtracking
 
 
 # In[265]:
