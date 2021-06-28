@@ -93,10 +93,10 @@ def clip(x, a, b):
     return x
 
 
-# In[203]:
+# In[9]:
 
 
-@nb.njit#(parallel=True)
+#@nb.njit#(parallel=True)
 def simulate(z, m=1, backtrack=True):
     for x in range(1):
         pos = np.array([0, 0])
@@ -108,7 +108,9 @@ def simulate(z, m=1, backtrack=True):
 
 #         steps = np.zeros((z**2, 2))
 #         steps[0] = pos
-        l = 1
+        level = 0
+#         TODO: randomize initial branches
+        branches = np.zeros((z**2,), dtype=np.int64)
         
 #         Loop through (n^2)*m steps, where n is the width of the grid and m is a coefficient
         for t in range(z**2*m):
@@ -116,14 +118,16 @@ def simulate(z, m=1, backtrack=True):
     #         print(grid[tuple(pos+delta[0])])
             possible = valid_moves(grid, choices, pos)
 #             print(possible)
-            grid[pos[0], pos[1]] = l+(z**2//4)
+            grid[pos[0], pos[1]] = level+(z**2//4)
             
-            if len(possible) > 0:
+            if len(possible) > 0 and branches[level] < len(possible):
 #                 delta = random.choice(possible)
 #                 delta = np.random.choice(possible)
 #                 np.random.shuffle(possible)
-                index = np.random.randint(0, len(possible))
-                delta = possible[index]
+#                 index = np.random.randint(0, len(possible))
+#                 branches[level] = index
+#                 delta = possible[index]
+                delta = possible[branches[level]]
 
 #                 steps.append(delta)
                 pos += delta
@@ -137,20 +141,26 @@ def simulate(z, m=1, backtrack=True):
 #                 grid[tuple(pos)] = 1
 #                 print(pos[0])
 
+#                 Move to the next "level" below the current one
 #                 Only increase the step count if there are still spaces to move to
-                if np.count_nonzero(grid) <= z**2-1:
-                    l += 1
+                if np.count_nonzero(grid) <= z**2-1 and level < z**2-1:
+                    level += 1
+                    branches[level] = 0
             else:
 #                 lengths.append(t)
 #                 walks.append(grid)
                 if backtrack:
                     # TODO: prevent reselection of "stuck" path
             
+#                     Reset value of current position and checked sub-branch
                     grid[pos[0], pos[1]] = 0
+                    branches[level] = 0
+                    
                     pos -= delta
                     pos = clip(pos, 0, z)
 #                     steps.pop()
-                    l -= 1
+                    level -= 1
+                    branches[level] += 1
                 else:
                     break
                 
@@ -162,7 +172,7 @@ def simulate(z, m=1, backtrack=True):
     return grid
 
 
-# In[255]:
+# In[18]:
 
 
 # Store the best discovered path (i.e., the one that covers the most cells in the grid)
@@ -171,7 +181,7 @@ best = None
 lengths = []
 walks = []
 # Run multiple simulations
-for i in range(30000):
+for i in range(300):
     G = simulate(5, 3, True)
 #     if best:
 #         print(best.max())
