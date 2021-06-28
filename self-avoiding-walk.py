@@ -110,6 +110,7 @@ def simulate(z, m=1, backtrack=True):
 #         steps[0] = pos
         l = 1
         
+#         Loop through (n^2)*m steps, where n is the width of the grid and m is a coefficient
         for t in range(z**2*m):
     #         print(0<pos+delta[0]<z)
     #         print(grid[tuple(pos+delta[0])])
@@ -136,6 +137,7 @@ def simulate(z, m=1, backtrack=True):
 #                 grid[tuple(pos)] = 1
 #                 print(pos[0])
 
+#                 Only increase the step count if there are still spaces to move to
                 if np.count_nonzero(grid) <= z**2-1:
                     l += 1
             else:
@@ -152,6 +154,7 @@ def simulate(z, m=1, backtrack=True):
                 else:
                     break
                 
+#                 End simulation early if a "perfect" path which covers the entire grid is found
                 if np.count_nonzero(grid) >= z**2-1:
                     break
 #         else:
@@ -159,13 +162,16 @@ def simulate(z, m=1, backtrack=True):
     return grid
 
 
-# In[248]:
+# In[255]:
 
 
+# Store the best discovered path (i.e., the one that covers the most cells in the grid)
 best = None
+# Track walks/paths and their lengths
 lengths = []
 walks = []
-for i in range(1000):
+# Run multiple simulations
+for i in range(30000):
     G = simulate(5, 3, True)
 #     if best:
 #         print(best.max())
@@ -173,10 +179,13 @@ for i in range(1000):
     L = np.count_nonzero(G)
     lengths.append(L)
     walks.append(G)
+    
+#     If current path is longer than the best one found, store it instead
 #     if best is None or G.max() > best.max():
     if best is None or np.count_nonzero(G) >= np.count_nonzero(best):
         best = G
 
+# Display a visualization of the generated path
 plt.figure(figsize=(10, 10))
 plt.imshow(best, cmap='inferno')
 plt.axis('off')
@@ -187,17 +196,21 @@ plt.axis('off')
 # add heuristics
 # avoid and/or break at 
 # add backtracking
+# add step labels
 
 
-# In[249]:
+# In[262]:
 
 
-plt.hist(lengths, bins=30)
+# Plot a histogram of the path lengths
+plt.figure(figsize=(10, 5))
+x = plt.hist(lengths, bins=25)
 
 
-# In[250]:
+# In[256]:
 
 
+# Display the "average path", the mean of all those simulated
 plt.imshow(np.average(np.stack(walks), axis=0))
 
 
