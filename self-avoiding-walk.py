@@ -97,7 +97,7 @@ def clip(x, a, b):
 
 
 @nb.njit#(parallel=True)
-def simulate(backtrack=True):
+def simulate(z, m=1, backtrack=True):
     for x in range(1):
         pos = np.array([0, 0])
 #         grid = np.zeros([z] * D)
@@ -110,7 +110,7 @@ def simulate(backtrack=True):
 #         steps[0] = pos
         l = 1
         
-        for t in range(z**2):
+        for t in range(z**2*m):
     #         print(0<pos+delta[0]<z)
     #         print(grid[tuple(pos+delta[0])])
             possible = valid_moves(grid, choices, pos)
@@ -155,14 +155,14 @@ def simulate(backtrack=True):
     return grid
 
 
-# In[92]:
+# In[248]:
 
 
 best = None
 lengths = []
 walks = []
 for i in range(1000):
-    G = simulate(True)
+    G = simulate(5, 3, True)
 #     if best:
 #         print(best.max())
     lengths.append(G.max())
