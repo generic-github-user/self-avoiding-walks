@@ -37,6 +37,19 @@ for n in range(dimensions):
 
 steps = []
 pos = np.array(start)
+@nb.jit(nopython=True)
+def bound(x, a, b):
+    if x >= b:
+        x = b-1
+    elif x < a:
+        x = a
+    return x
+
+@nb.njit
+def clip(x, a, b):
+    for i in range(x.shape[0]):
+        x[i] = bound(x[i], a, b)
+    return x
 lengths = []
 walks = []
 for x in range(1000):
