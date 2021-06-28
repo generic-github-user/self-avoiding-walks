@@ -25,7 +25,7 @@
 #  - https://iopscience.iop.org/article/10.1088/0305-4470/38/42/001
 #  - https://mathoverflow.net/questions/67192/exactly-simulating-a-random-walk-from-infinity
 
-# In[32]:
+# In[1]:
 
 
 import numpy as np
@@ -35,7 +35,7 @@ import itertools
 import random
 
 
-# In[666]:
+# In[2]:
 
 
 dimensions = 2
@@ -55,7 +55,7 @@ choices = np.stack(choices)
 print(choices)
 
 
-# In[650]:
+# In[3]:
 
 
 steps = []
@@ -75,7 +75,7 @@ def valid_moves(g, m, q):
     return filtered
 
 
-# In[667]:
+# In[4]:
 
 
 @nb.jit(nopython=True)
@@ -93,23 +93,29 @@ def clip(x, a, b):
     return x
 
 
-# In[690]:
+# In[79]:
 
 
 @nb.njit#(parallel=True)
-def simulate():
+def simulate(backtrack=True):
     for x in range(1):
-        pos = np.array([4,4])
+        pos = np.array([0, 0])
 #         grid = np.zeros([z] * D)
         grid = np.zeros((z, z), dtype=np.int64)
-        lengths = []
-        walks = []
+#         walks = []
+#         steps = []
+#         steps.append(pos)
+
+#         steps = np.zeros((z**2, 2))
+#         steps[0] = pos
+        l = 1
+        
         for t in range(z**2):
     #         print(0<pos+delta[0]<z)
     #         print(grid[tuple(pos+delta[0])])
             possible = valid_moves(grid, choices, pos)
 #             print(possible)
-            grid[pos[0], pos[1]] = t+(z**2//4)
+            grid[pos[0], pos[1]] = l+(z**2//4)
             
             if len(possible) > 0:
 #                 delta = random.choice(possible)
@@ -120,29 +126,43 @@ def simulate():
 
 #                 steps.append(delta)
                 pos += delta
+#                 steps.append(delta)
+#                 steps[l] = delta
+
 #                 pos = np.clip(pos, 0, z-1)
                 
                 pos = clip(pos, 0, z)
                 
 #                 grid[tuple(pos)] = 1
 #                 print(pos[0])
+
+                l += 1
             else:
-                lengths.append(t)
+#                 lengths.append(t)
 #                 walks.append(grid)
-                break
+                if backtrack:
+                    # TODO: prevent reselection of "stuck" path
+            
+                    grid[pos[0], pos[1]] = 0
+                    pos -= delta
+                    pos = clip(pos, 0, z)
+#                     steps.pop()
+                    l -= 1
+                else:
+                    break
 #         else:
-        walks.append(grid)
+#         walks.append(grid)
     return grid
 
 
-# In[732]:
+# In[92]:
 
 
 best = None
 lengths = []
 walks = []
-for i in range(2000):
-    G = simulate()
+for i in range(1000):
+    G = simulate(True)
 #     if best:
 #         print(best.max())
     lengths.append(G.max())
@@ -153,6 +173,7 @@ for i in range(2000):
 plt.figure(figsize=(10, 10))
 plt.imshow(best, cmap='inferno')
 plt.axis('off')
+
 # decision trees? + parity
 # random walks that close to a polygon
 # (self-avoiding) random walks around obstructions
@@ -161,7 +182,7 @@ plt.axis('off')
 # add backtracking
 
 
-# In[685]:
+# In[56]:
 
 
 plt.hist(lengths, bins=30)
