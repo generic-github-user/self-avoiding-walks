@@ -18,6 +18,12 @@
 #  - https://www.sciencedirect.com/science/article/abs/pii/0032386185900084?via%3Dihub
 #  - https://journals.aps.org/prb/abstract/10.1103/PhysRevB.31.2993
 #  - https://arxiv.org/abs/1408.6714
+#  
+# Other interesting simulations/related information:
+#  - https://mathoverflow.net/questions/88659/traversing-the-infinite-square-grid
+#  - https://mathoverflow.net/questions/306794/counting-hamiltonian-cycles-in-n-times-n-square-grid
+#  - https://iopscience.iop.org/article/10.1088/0305-4470/38/42/001
+#  - https://mathoverflow.net/questions/67192/exactly-simulating-a-random-walk-from-infinity
 
 # In[32]:
 
