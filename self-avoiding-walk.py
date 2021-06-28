@@ -8,6 +8,16 @@
 #  - https://mathoverflow.net/questions/54144/self-avoiding-walk-pair-correlation
 #  - https://mathoverflow.net/questions/23583/self-avoidance-time-of-random-walk
 #  - https://mathoverflow.net/questions/181340/square-filling-self-avoiding-walk
+#  
+# Some exhaustive results by numerical simulation are available here:
+#  - https://secure.math.ubc.ca/~slade/lacecounts/index.html
+#  - https://secure.math.ubc.ca/~slade/se_tables.pdf
+#  
+# Here are some other academic results on the topic:
+#  - https://secure.math.ubc.ca/~slade/se_tables.pdf
+#  - https://www.sciencedirect.com/science/article/abs/pii/0032386185900084?via%3Dihub
+#  - https://journals.aps.org/prb/abstract/10.1103/PhysRevB.31.2993
+#  - https://arxiv.org/abs/1408.6714
 
 # In[32]:
 
