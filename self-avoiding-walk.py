@@ -93,7 +93,7 @@ def clip(x, a, b):
     return x
 
 
-# In[79]:
+# In[203]:
 
 
 @nb.njit#(parallel=True)
@@ -136,7 +136,8 @@ def simulate(z, m=1, backtrack=True):
 #                 grid[tuple(pos)] = 1
 #                 print(pos[0])
 
-                l += 1
+                if np.count_nonzero(grid) <= z**2-1:
+                    l += 1
             else:
 #                 lengths.append(t)
 #                 walks.append(grid)
@@ -149,6 +150,9 @@ def simulate(z, m=1, backtrack=True):
 #                     steps.pop()
                     l -= 1
                 else:
+                    break
+                
+                if np.count_nonzero(grid) >= z**2-1:
                     break
 #         else:
 #         walks.append(grid)
@@ -165,9 +169,12 @@ for i in range(1000):
     G = simulate(5, 3, True)
 #     if best:
 #         print(best.max())
-    lengths.append(G.max())
+#     lengths.append(G.max())
+    L = np.count_nonzero(G)
+    lengths.append(L)
     walks.append(G)
-    if best is None or G.max() > best.max():
+#     if best is None or G.max() > best.max():
+    if best is None or np.count_nonzero(G) >= np.count_nonzero(best):
         best = G
 
 plt.figure(figsize=(10, 10))
@@ -182,13 +189,13 @@ plt.axis('off')
 # add backtracking
 
 
-# In[56]:
+# In[249]:
 
 
 plt.hist(lengths, bins=30)
 
 
-# In[619]:
+# In[250]:
 
 
 plt.imshow(np.average(np.stack(walks), axis=0))
