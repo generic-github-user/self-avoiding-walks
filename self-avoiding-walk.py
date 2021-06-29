@@ -37,6 +37,10 @@
 #  - Space-filling curve
 #  - Combinatorics
 #  - Hamiltonian path (also see Hamiltonian cycle, bent Hamiltonian path)
+# 
+# Other notes:
+#  - "Greek-key tours" also came up in a handful of online blog posts (linked above) but I was unable to find any relevant information in the literature; in case you want to look, it seems to be related to chess, in the same sense as a Knight's Tour. It also appears in the context of [protein folding](https://en.wikipedia.org/wiki/Beta_sheet#Greek_key_motif) (a surprisingly connected subject).
+#  - There are quite a few thorough but (unfortunately) isolated resources about this niche of geometry/graph theory on the web; there appears to be a standard nomenclature and some established methodology for these problems but very limited resources on specific (and modern - most of what I could find is at least a few years old) implementations.
 
 # In[2]:
 
