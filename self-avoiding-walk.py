@@ -30,6 +30,17 @@
 #  - https://oeis.org/A145157
 #  - http://www.njohnston.ca/2009/05/on-maximal-self-avoiding-walks/
 #  - https://datagenetics.com/blog/december22018/index.html
+#  - https://mathworld.wolfram.com/GridGraph.html
+#  - https://math.stackexchange.com/questions/4018110/calculate-the-area-of-a-n-times-n-grid-using-a-2d-random-walk
+#  - https://rdlyons.pages.iu.edu/rw/rw.html
+#  - https://demonstrations.wolfram.com/SelfAvoidingRandomWalks/
+#  - https://www.researchgate.net/figure/a-shows-all-possible-backbite-moves-b-c-show-all-resulting-structures-after-the_fig2_221008721
+#  - http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.35.3648&rep=rep1&type=pdf
+#  - OEIS
+#      - https://oeis.org/A145157
+#      - https://oeis.org/A120443
+#      - https://oeis.org/A046995
+#      - https://oeis.org/A046994
 #  
 # Some search terms in case you wish to explore further:
 #  - (Self-avoiding) random walks (SAWs)
