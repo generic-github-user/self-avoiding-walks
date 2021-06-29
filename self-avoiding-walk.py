@@ -2,12 +2,13 @@
 # coding: utf-8
 
 # Refer to the [Wikipedia article](https://en.wikipedia.org/wiki/Self-avoiding_walk) on self-avoiding walks for a good primer on the subject. [Bauerschmidt et al. (2012)](https://www.ihes.fr/~duminil/publi/saw_lecture_notes.pdf) give an extremely thorough description of known qualities of self-avoiding random walks and their connections to other areas of mathematics. Here are links to some other resources I found informative:
-#  - https://mathoverflow.net/questions/158811/wander-distance-of-self-avoiding-walk-that-backs-out-of-culs-de-sac
-#  - https://mathoverflow.net/questions/52813/self-avoiding-walk-enumerations
-#  - https://mathoverflow.net/questions/41543/how-to-characterize-a-self-avoiding-
-#  - https://mathoverflow.net/questions/54144/self-avoiding-walk-pair-correlation
-#  - https://mathoverflow.net/questions/23583/self-avoidance-time-of-random-walk
-#  - https://mathoverflow.net/questions/181340/square-filling-self-avoiding-walk
+#  - MathOverflow
+#    - https://mathoverflow.net/questions/158811/wander-distance-of-self-avoiding-walk-that-backs-out-of-culs-de-sac
+#    - https://mathoverflow.net/questions/52813/self-avoiding-walk-enumerations
+#    - https://mathoverflow.net/questions/41543/how-to-characterize-a-self-avoiding-
+#    - https://mathoverflow.net/questions/54144/self-avoiding-walk-pair-correlation
+#    - https://mathoverflow.net/questions/23583/self-avoidance-time-of-random-walk
+#    - https://mathoverflow.net/questions/181340/square-filling-self-avoiding-walk
 #  
 # Some exhaustive results by numerical simulation are available here:
 #  - https://secure.math.ubc.ca/~slade/lacecounts/index.html
@@ -24,6 +25,10 @@
 #  - https://mathoverflow.net/questions/306794/counting-hamiltonian-cycles-in-n-times-n-square-grid
 #  - https://iopscience.iop.org/article/10.1088/0305-4470/38/42/001
 #  - https://mathoverflow.net/questions/67192/exactly-simulating-a-random-walk-from-infinity
+#  - http://users.cecs.anu.edu.au/~bdm/papers/plantri-full.pdf
+#  - https://oeis.org/A145157
+#  - http://www.njohnston.ca/2009/05/on-maximal-self-avoiding-walks/
+#  - https://datagenetics.com/blog/december22018/index.html
 
 # In[2]:
 
