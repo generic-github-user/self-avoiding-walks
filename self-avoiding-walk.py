@@ -9,6 +9,9 @@
 #    - https://mathoverflow.net/questions/54144/self-avoiding-walk-pair-correlation
 #    - https://mathoverflow.net/questions/23583/self-avoidance-time-of-random-walk
 #    - https://mathoverflow.net/questions/181340/square-filling-self-avoiding-walk
+#    - https://mathoverflow.net/questions/1592/special-cases-for-efficient-enumeration-of-hamiltonian-paths-on-grid-graphs
+#    - https://math.stackexchange.com/questions/2900521/counting-hamiltonian-cycles-in-a-graph
+#  - https://stackoverflow.com/questions/7371227/algorithm-to-find-a-random-hamiltonian-path-in-a-grid
 #  
 # Some exhaustive results by numerical simulation are available here:
 #  - https://secure.math.ubc.ca/~slade/lacecounts/index.html
@@ -20,6 +23,9 @@
 #  - https://journals.aps.org/prb/abstract/10.1103/PhysRevB.31.2993
 #  - https://arxiv.org/abs/1408.6714
 #  - https://www.combinatorics.org/ojs/index.php/eljc/article/view/v21i4p7
+#  - https://arxiv.org/pdf/1110.3074.pdf
+#  - http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2950
+#  - https://www.researchgate.net/publication/267115049_Enumeration_of_Hamiltonian_Cycles_in_Some_Grid_Graphs
 #  
 # Other interesting simulations/related information:
 #  - https://mathoverflow.net/questions/88659/traversing-the-infinite-square-grid
