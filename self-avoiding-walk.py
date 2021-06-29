@@ -56,12 +56,18 @@
 #  - Hamiltonian path (also see Hamiltonian cycle, bent Hamiltonian path)
 #  - (Solid) grid graph
 #  - [Peano curve](https://en.wikipedia.org/wiki/Peano_curve)
+#  - (Minimum) [spanning tree](https://en.wikipedia.org/wiki/Spanning_tree)
 #  - Depth-first (tree) search
+#  - Chaos theory
 #  - [Regular graph](https://en.wikipedia.org/wiki/Regular_graph)
 #  - [Component](https://en.wikipedia.org/wiki/Component_(graph_theory))
 #  - [Adjacency matrix](https://en.wikipedia.org/wiki/Adjacency_matrix)
 #  - Planar graph
 #  - Backbite algorithm
+#  - Ant colony optimization/system
+#  - Maze generation algorithms
+#  - Pivot algorithm (self-avoiding walks)
+#  - Coarse graining
 # 
 # Other notes:
 #  - "Greek-key tours" also came up in a handful of online blog posts (linked above) but I was unable to find any relevant information in the literature; in case you want to look, it seems to be related to chess, in the same sense as a Knight's Tour. It also appears in the context of [protein folding](https://en.wikipedia.org/wiki/Beta_sheet#Greek_key_motif) (a surprisingly connected subject).
