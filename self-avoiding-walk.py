@@ -19,6 +19,7 @@
 #  - https://www.sciencedirect.com/science/article/abs/pii/0032386185900084?via%3Dihub
 #  - https://journals.aps.org/prb/abstract/10.1103/PhysRevB.31.2993
 #  - https://arxiv.org/abs/1408.6714
+#  - https://www.combinatorics.org/ojs/index.php/eljc/article/view/v21i4p7
 #  
 # Other interesting simulations/related information:
 #  - https://mathoverflow.net/questions/88659/traversing-the-infinite-square-grid
@@ -29,6 +30,13 @@
 #  - https://oeis.org/A145157
 #  - http://www.njohnston.ca/2009/05/on-maximal-self-avoiding-walks/
 #  - https://datagenetics.com/blog/december22018/index.html
+#  
+# Some search terms in case you wish to explore further:
+#  - (Self-avoiding) random walks (SAWs)
+#  - Lattice theory
+#  - Space-filling curve
+#  - Combinatorics
+#  - Hamiltonian path (also see Hamiltonian cycle, bent Hamiltonian path)
 
 # In[2]:
 
@@ -251,6 +259,7 @@ plt.axis('off')
 # progressive upscaling+mutation?
 # tracing/wrapping paths
 # estimate needed compute
+# allow crossing grid boundaries (i.e., a torus manifold)
 
 
 # In[120]:
