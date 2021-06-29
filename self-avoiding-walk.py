@@ -13,7 +13,7 @@
 #    - https://math.stackexchange.com/questions/2900521/counting-hamiltonian-cycles-in-a-graph
 #  - https://stackoverflow.com/questions/7371227/algorithm-to-find-a-random-hamiltonian-path-in-a-grid
 #  
-# Some exhaustive results by numerical simulation are available here:
+# Some exhaustive results by numerical simulation are available here (also see the OEIS entries and their associated references, several of which contain extensive tables of data for specific grid sizes):
 #  - https://secure.math.ubc.ca/~slade/lacecounts/index.html
 #  - https://secure.math.ubc.ca/~slade/se_tables.pdf
 #  
@@ -33,7 +33,6 @@
 #  - https://iopscience.iop.org/article/10.1088/0305-4470/38/42/001
 #  - https://mathoverflow.net/questions/67192/exactly-simulating-a-random-walk-from-infinity
 #  - http://users.cecs.anu.edu.au/~bdm/papers/plantri-full.pdf
-#  - https://oeis.org/A145157
 #  - http://www.njohnston.ca/2009/05/on-maximal-self-avoiding-walks/
 #  - https://datagenetics.com/blog/december22018/index.html
 #  - https://mathworld.wolfram.com/GridGraph.html
@@ -64,6 +63,8 @@
 #  - [Adjacency matrix](https://en.wikipedia.org/wiki/Adjacency_matrix)
 #  - Planar graph
 #  - Backbite algorithm
+#      - This approach appears a handful of times (seriously, a Google search for that specific phrase returned 46 results), mostly in blog posts; it appears to be effective for some purposes (mainly artistic or exploratory) despite its obscurity
+#      - (Though, as far as I can tell, the method only produces a small subset of the possible Hamiltonian paths on a grid/lattice and a brute force search is required for rigorous conclusions regarding a given grid size (also see: NP-completeness); clearly, the issue there is that the search space is intractably large for grid sizes above 6 by 6 or so, even in 2 dimensions.)
 #  - Ant colony optimization/system
 #  - Maze generation algorithms
 #  - Pivot algorithm (self-avoiding walks)
