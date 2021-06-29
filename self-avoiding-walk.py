@@ -72,27 +72,29 @@ choices = np.stack(choices)
 print(choices)
 
 
-# In[4]:
+# In[188]:
 
 
 steps = []
 @nb.njit
-def valid_moves(g, m, q):
+def valid_moves(g, m, q, o, n):
 #     filtered = list(filter(lambda c: (0<=pos+c).all() and (pos+c<z).all() and grid[tuple(pos+c)] == 0, m))
     filtered = []
     for i in m:
 #         print(pos, m)
         p = q+i
 #         if (0<=p).all() and (p<z).all() and g[p[0], p[1]] == 0:
+        if o:
+            p %= n
         if (0<=p).all():
-            if (p<z).all():
+            if (p<n).all():
                 if g[p[0], p[1]] == 0:
 #                     print(p, g[p[0], p[1]], (p<z).all(), z)
                     filtered.append(i)
     return filtered
 
 
-# In[5]:
+# In[189]:
 
 
 @nb.jit(nopython=True)
@@ -110,11 +112,11 @@ def clip(x, a, b):
     return x
 
 
-# In[134]:
+# In[199]:
 
 
 @nb.njit#(parallel=True)
-def simulate(z, m=1, backtrack=True, randomize=True):
+def simulate(z, m=1, backtrack=True, randomize=True, open_edges=False):
     for x in range(1):
         pos = np.array([0, 0])
 #         grid = np.zeros([z] * D)
@@ -138,7 +140,7 @@ def simulate(z, m=1, backtrack=True, randomize=True):
         for t in range(z**2*m):
     #         print(0<pos+delta[0]<z)
     #         print(grid[tuple(pos+delta[0])])
-            possible = valid_moves(grid, choices, pos)
+            possible = valid_moves(grid, choices, pos, open_edges, z)
 #             print(possible)
             
 
@@ -179,7 +181,10 @@ def simulate(z, m=1, backtrack=True, randomize=True):
 
 #                 pos = np.clip(pos, 0, z-1)
 
-                pos = clip(pos, 0, z)
+                if open_edges:
+                    pos %= z
+                else:
+                    pos = clip(pos, 0, z)
 
 #                 Move to the next "level" below the current one
 #                 Only increase the step count if there are still spaces to move to
@@ -224,7 +229,7 @@ def simulate(z, m=1, backtrack=True, randomize=True):
     return grid
 
 
-# In[187]:
+# In[217]:
 
 
 # Store the best discovered path (i.e., the one that covers the most cells in the grid)
@@ -233,8 +238,8 @@ best = None
 lengths = []
 walks = []
 # Run multiple simulations
-for i in range(20000):
-    G = simulate(8, 4, True, True)
+for i in range(8000):
+    G = simulate(8, 2, True, True, False)
 #     if best:
 #         print(best.max())
 #     lengths.append(G.max())
